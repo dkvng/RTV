@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Hls from "hls.js";
 
-class App extends Component {
+import VideoPlaylist from "./VideoPlaylist";
+
+export default class VideoPlayer extends Component {
   constructor(props) {
     super(props);
   }
@@ -23,20 +25,18 @@ class App extends Component {
         video.play();
       });
     }
-
   }
 
   render() {
-    console.log(this.props);
+    let { streamURI, items } = this.props;
 
-    this.props.streamURI !== "" ? this.playStream() : "";
+    streamURI !== "" ? this.playStream() : "";
 
     return (
       <div className="">
-        <video id="VideoPlayer-player" />
+        <video controls id="VideoPlayer-player" />
+        {items.length > 0 ? <VideoPlaylist items={items} /> : ""}
       </div>
     );
   }
 }
-
-export default App;

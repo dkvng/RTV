@@ -8,7 +8,7 @@ class Video extends Component {
 
     this.state = {
       streamURI: "",
-      playlist: ""
+      items: []
     };
   }
 
@@ -19,16 +19,17 @@ class Video extends Component {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          streamURI: data.entity.stream.uri
+          streamURI: data.entity.stream.uri,
+          items: data.entity.items
         });
       });
   }
 
   render() {
     return (
-      <div className="Video">
-        <VideoPlayer streamURI={this.state.streamURI} />
-      </div>
+      <section className="Video">
+        <VideoPlayer streamURI={this.state.streamURI} items={this.state.items} />
+      </section>
     );
   }
 }
