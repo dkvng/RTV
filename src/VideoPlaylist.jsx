@@ -13,8 +13,14 @@ export default class VideoPlaylist extends Component {
   }
 
   render() {
-    return <ul className="VideoPlaylist">
-      <p>Playlist</p>
-      {this.displayPlaylistItems()}</ul>;
+    return (
+      <ul className="VideoPlaylist">
+        <div
+          className="VideoPlaylist-progress"
+        />
+        <p key={999}>Playlist</p>
+        {this.displayPlaylistItems()}
+      </ul>
+    );
   }
 }

@@ -22,11 +22,19 @@
 .VideoPlaylist {
   position: fixed;
   right: 0;
+  right: -390px;
   top: 0;
   bottom: 0;
   overflow-y: scroll;
   color: white;
+  transition: transform 1s;
 }
+
+.VideoPlaylist:hover {
+  /* right: 0; */
+  transform: translate(-390px, 0);
+}
+
 
 .VideoPlaylist > p {
   background: rgba(0, 0, 0, 0.5);
@@ -34,6 +42,17 @@
   font-size: 19px;
   padding: 15px 20px;
   display: flex;
+}
+
+.VideoPlaylist-progress {
+  position: fixed;
+  width: 20px;
+  height: 200px;
+  background: #ff9001;
+}
+
+.VideoPlaylist:hover .VideoPlaylist-progress {
+  display: none;
 }
 
 .VideoPlaylistItem {
@@ -69,6 +88,7 @@
   justify-content: center;
   flex-direction: column;
   text-align: left;
+  line-height: 1.3em;
 }
 
 .VideoPlaylistItem span {

@@ -5,14 +5,26 @@ export default class VideoPlaylistItem extends Component {
     super(props);
   }
 
+  skipTo(time, item) {
+    let video = document.getElementById("VideoPlayer-player");
+    video.currentTime = time;
+    video.poster = item.resources[item.resources.length - 2].uri;
+  }
+
   render() {
     let { item } = this.props;
     console.log(item.resources);
     let img;
     if (item.resources.length > 3) {
       return (
-        <li className="VideoPlaylistItem">
-          <img alt={item.title} src={item.resources[item.resources.length - 2].uri} />
+        <li
+          className="VideoPlaylistItem"
+          onClick={() => this.skipTo(item.startTime, item)}
+        >
+          <img
+            alt={item.title}
+            src={item.resources[item.resources.length - 2].uri}
+          />
           <p>
             {item.title}
             <span>

@@ -27,6 +27,11 @@ export default class VideoPlayer extends Component {
     }
   }
 
+  skipTo(time) {
+    let video = document.getElementById("VideoPlayer-player");
+
+  }
+
   render() {
     let { streamURI, items } = this.props;
 
