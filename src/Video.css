@@ -2,3 +2,78 @@
   height: 100vh;
   background-color: black;
 }
+
+::-webkit-scrollbar {
+  width: 13px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.VideoPlaylist {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: scroll;
+  color: white;
+}
+
+.VideoPlaylist > p {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 19px;
+  padding: 15px 20px;
+  display: flex;
+}
+
+.VideoPlaylistItem {
+  width: 100%;
+  width: 400px;
+  height: 110px;
+  display: grid;
+  /* grid-template-rows: ; */
+  grid-template-columns: 45% 50% 5%;
+  font-size: 0.9em;
+  background: rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(195, 195, 195, 0.1);
+}
+
+.VideoPlaylistItem:hover {
+  background: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.VideoPlaylistItem:active {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.VideoPlaylistItem img {
+  width: 142px;
+  height: 80px;
+  object-fit: cover;
+  margin: auto;
+}
+
+.VideoPlaylistItem p {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+
+.VideoPlaylistItem span {
+  font-size: 12px;
+  opacity: 0.4;
+  line-height: 30px;
+  text-transform: uppercase;
+}

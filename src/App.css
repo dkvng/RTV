@@ -21,3 +21,7 @@
 .App-intro {
   font-size: large;
 }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
