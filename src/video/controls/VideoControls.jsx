@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PlayButton from "./PlayButton";
 import MuteButton from "./MuteButton";
 
+import * as Util from "../util";
+
 export default class VideoControls extends Component {
   constructor(props) {
     super(props);
@@ -41,25 +43,16 @@ export default class VideoControls extends Component {
     this.video.currentTime = pos * this.video.duration;
   }
 
-  formatDuration(seconds) {
-    let minutes = Math.floor(seconds / 60);
-    seconds = Math.round(seconds % 60);
-    if (seconds < 10) {
-      seconds = "0" + seconds;
-    }
-    return String(minutes) + ":" + seconds;
-  }
-
   render() {
     return (
       <ul className="VideoControls">
         <PlayButton video={this.props.video} />
         <MuteButton toggleMute={this.toggleMute} />
-        <p>{this.formatDuration(this.state.currentTime)}</p>
+        <p>{Util.formatDuration(this.state.currentTime)}</p>
         <progress id="progress" onClick={e => this.skipTo(e)} value="0" min="0">
           <span id="progress-bar" />
         </progress>
-        <p>{this.formatDuration(this.state.duration)}</p>
+        <p>{Util.formatDuration(this.state.duration)}</p>
       </ul>
     );
   }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import * as Util from "./util";
 
 export default class VideoPlaylistItem extends Component {
   constructor(props) {
@@ -12,14 +13,7 @@ export default class VideoPlaylistItem extends Component {
     video.poster = item.resources[item.resources.length - 2].uri;
   }
 
-  formatDuration(seconds) {
-    let minutes = Math.floor(seconds / 60);
-    seconds = Math.round(seconds % 60);
-    if (seconds < 10) {
-      seconds = "0" + seconds;
-    }
-    return String(minutes) + ":" + seconds;
-  }
+
 
   render() {
     let { item } = this.props;
@@ -42,7 +36,7 @@ export default class VideoPlaylistItem extends Component {
         <p>
           {item.title}
           <span>
-            {this.formatDuration(item.duration)}{" "}
+            {Util.formatDuration(item.duration)}{" "}
             {item.edition !== "RENDOPENER" || item.edition !== "RENDCLOSER"
               ? item.displayCategory
               : ""}

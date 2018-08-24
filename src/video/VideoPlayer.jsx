@@ -8,7 +8,6 @@ export default class VideoPlayer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTime: 0,
       currentSegment: 0
     };
   }
