@@ -36,6 +36,7 @@
   overflow-y: scroll;
   color: white;
   transition: transform 500ms;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .VideoPlaylist:hover {
@@ -52,17 +53,22 @@
 }
 
 .VideoPlaylist-progress {
+  z-index: 8;
   position: fixed;
   width: 19px;
   height: 200px;
   top: 0;
   background: #ff9001;
   transition: transform 500ms;
+  -webkit-transition-property: top; /* Safari */
+  -webkit-transition-duration: 1s; /* Safari */
+  transition-property: top;
+  transition-duration: 1s;
 }
 
 .VideoPlaylist:hover .VideoPlaylist-progress {
   transform: translate(-394px, 0);
-  display: none;
+  opacity: 0;
 }
 
 .VideoPlaylist:hover .VideoPlaylistItem {
@@ -74,14 +80,14 @@
   width: 400px;
   height: 110px;
   display: grid;
-  /* grid-template-rows: ; */
   grid-template-columns: 45% 50% 5%;
   font-size: 0.9em;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.4);
+  position: relative;
 }
 
 .VideoPlaylistItem:hover {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
 
@@ -96,6 +102,19 @@
   margin: auto;
 }
 
+.VideoPlaylist:hover .VideoPlaylistItem.selected > .marker{
+  width: 4px;
+  left: 0;
+  background: #ff9001;
+  height: 100%;
+  bottom: 0;
+}
+
+.VideoPlaylist:hover .VideoPlaylistItem.selected {
+  border-bottom: 0;
+  background: rgba(255, 255, 255, 0.25);
+  transition: background 400ms;
+}
 .VideoPlaylistItem p {
   display: flex;
   justify-content: center;
@@ -111,29 +130,61 @@
   text-transform: uppercase;
 }
 
+.VideoPlaylistItem > .marker {
+  position: absolute;
+}
+
 .VideoControls {
   z-index: 7;
-  padding: 0 20px;
+  padding: 120px 40px 0 20px;
   display: grid;
   grid-template-columns: 1fr 1fr 60fr;
   grid-column-gap: 20px;
   align-items: center;
   position: fixed;
   height: 60px;
-  bottom: 0;
+  /* bottom: 0; */
+  bottom: -40px;
+  opacity: 0;
   left: 0;
   right: 0;
   color: white;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.2) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  transition: transform 650ms;
 }
 
-.VideoControls > li {
-  width: 36px;
+.VideoControls:hover {
+  opacity: 1;
+  transform: translate(0, -40px);
 }
 
-.VideoControls > li:hover {
+.VideoControls > li > i {
+  font-size: 30px;
+}
+
+.VideoControls > li:hover,
+.VideoControls #progress:hover {
   cursor: pointer;
 }
 
-.VideoControls progress {
+.VideoControls #progress {
   width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.5);
+  position: relative;
+}
+
+#progress-bar {
+  position: absolute;
+  left: 0;
+  width: 0;
+}
+
+progress[value]::-webkit-progress-value {
+  background-color: #ff9001;
 }

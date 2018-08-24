@@ -16,16 +16,12 @@ export default class MuteButton extends Component {
   }
 
   render() {
-    let icon;
-    if (this.state.muted) {
-      icon = "&#9658";
-    }
     return (
       <li id="mute" onClick={() => this.handleClick()}>
         {this.state.muted ? (
-          <i class="material-icons">volume_off</i>
+          <i className="material-icons">volume_off</i>
         ) : (
-          <i class="material-icons">volume_up</i>
+          <i className="material-icons">volume_up</i>
         )}
       </li>
     );

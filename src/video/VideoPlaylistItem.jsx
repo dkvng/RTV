@@ -5,21 +5,36 @@ export default class VideoPlaylistItem extends Component {
     super(props);
   }
 
-  skipTo(time, item) {
+  skipTo(e, time, item) {
+    this.props.updateSegment(e);
     let video = document.getElementById("VideoPlayer-player");
     video.currentTime = time;
     video.poster = item.resources[item.resources.length - 2].uri;
   }
 
+  formatDuration(seconds) {
+    let minutes = Math.floor(seconds / 60);
+    seconds = Math.round(seconds % 60);
+    if (seconds < 10) {
+      seconds = "0" + seconds;
+    }
+    return String(minutes) + ":" + seconds;
+  }
+
   render() {
     let { item } = this.props;
-    console.log(item.resources);
+    let classes = "VideoPlaylistItem";
+    if (this.props.selected) {
+      classes += " selected";
+    }
 
     return (
       <li
-        className="VideoPlaylistItem"
-        onClick={() => this.skipTo(item.startTime, item)}
+        className={classes}
+        onClick={e => this.skipTo(e, item.startTime, item)}
+        value={this.props.value}
       >
+      <div className="marker"></div>
         <img
           alt={item.title}
           src={item.resources[item.resources.length - 2].uri}
@@ -27,7 +42,7 @@ export default class VideoPlaylistItem extends Component {
         <p>
           {item.title}
           <span>
-            time{" "}
+            {this.formatDuration(item.duration)}{" "}
             {item.edition !== "RENDOPENER" || item.edition !== "RENDCLOSER"
               ? item.displayCategory
               : ""}

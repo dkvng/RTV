@@ -27,9 +27,12 @@ class Video extends Component {
 
   render() {
     return (
-      <section className="Video">
-        <VideoPlayer streamURI={this.state.streamURI} items={this.state.items} />
-      </section>
+      <React.Fragment>
+        <VideoPlayer
+          streamURI={this.state.streamURI}
+          items={this.state.items}
+        />
+    </React.Fragment>
     );
   }
 }
