@@ -1,6 +1,14 @@
 #VideoPlayer-player {
   height: 100vh;
   background-color: black;
+  display: block;
+  position: absolute;
+  top: 0;
+  -o-object-fit: cover;
+  object-fit: cover;
+  opacity: 1;
+  background-size: cover;
+  width: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -22,19 +30,18 @@
 .VideoPlaylist {
   position: fixed;
   right: 0;
-  right: -390px;
+  right: -394px;
   top: 0;
   bottom: 0;
   overflow-y: scroll;
   color: white;
-  transition: transform 1s;
+  transition: transform 500ms;
 }
 
 .VideoPlaylist:hover {
-  /* right: 0; */
-  transform: translate(-390px, 0);
+  transform: translate(-394px, 0);
+  z-index: 8;
 }
-
 
 .VideoPlaylist > p {
   background: rgba(0, 0, 0, 0.5);
@@ -46,13 +53,20 @@
 
 .VideoPlaylist-progress {
   position: fixed;
-  width: 20px;
+  width: 19px;
   height: 200px;
+  top: 0;
   background: #ff9001;
+  transition: transform 500ms;
 }
 
 .VideoPlaylist:hover .VideoPlaylist-progress {
+  transform: translate(-394px, 0);
   display: none;
+}
+
+.VideoPlaylist:hover .VideoPlaylistItem {
+  border-top: 1px solid rgba(195, 195, 195, 0.1);
 }
 
 .VideoPlaylistItem {
@@ -64,7 +78,6 @@
   grid-template-columns: 45% 50% 5%;
   font-size: 0.9em;
   background: rgba(0, 0, 0, 0.5);
-  border-top: 1px solid rgba(195, 195, 195, 0.1);
 }
 
 .VideoPlaylistItem:hover {
@@ -96,4 +109,31 @@
   opacity: 0.4;
   line-height: 30px;
   text-transform: uppercase;
+}
+
+.VideoControls {
+  z-index: 7;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 60fr;
+  grid-column-gap: 20px;
+  align-items: center;
+  position: fixed;
+  height: 60px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: white;
+}
+
+.VideoControls > li {
+  width: 36px;
+}
+
+.VideoControls > li:hover {
+  cursor: pointer;
+}
+
+.VideoControls progress {
+  width: 100%;
 }
