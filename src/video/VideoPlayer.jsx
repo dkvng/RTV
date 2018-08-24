@@ -15,10 +15,10 @@ export default class VideoPlayer extends Component {
 
   playStream() {
     const { streamURI } = this.props;
-    const video = document.getElementById("VideoPlayer-player");
+    const video = this.refs.video;
     this.video = video;
 
-    const videoControls = document.querySelector("VideoControls");
+    const videoControls = this.refs.controls;
 
     if (Hls.isSupported()) {
       let stream = new Hls();
@@ -37,6 +37,7 @@ export default class VideoPlayer extends Component {
         video.play();
       });
     }
+
     this.video.muted = true;
     for (let i = 0; i < this.video.textTracks.length; i++) {
       this.video.textTracks[i].mode = "hidden";
@@ -57,6 +58,11 @@ export default class VideoPlayer extends Component {
       }
       i += 1;
     }
+
+    this.refs.controls.setState({
+      currentTime: this.video.currentTime,
+      duration: this.video.duration
+    });
   }
 
   render() {
@@ -74,11 +80,16 @@ export default class VideoPlayer extends Component {
     return (
       <React.Fragment>
         <video
+          ref="video"
           id="VideoPlayer-player"
           onTimeUpdate={() => this.trackSegment()}
         />
 
-        {items.length > 0 ? <VideoControls video={this.video} /> : ""}
+        {items.length > 0 ? (
+          <VideoControls ref="controls" video={this.video} />
+        ) : (
+          ""
+        )}
         {items.length > 0 ? (
           <VideoPlaylist
             currentSegment={this.state.currentSegment}

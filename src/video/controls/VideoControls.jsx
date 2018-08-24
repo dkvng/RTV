@@ -5,6 +5,11 @@ import MuteButton from "./MuteButton";
 export default class VideoControls extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      duration: 0,
+      currentTime: 0
+    };
     this.video = this.props.video;
     this.toggleMute = this.toggleMute.bind(this);
     this.progress = document.querySelector("progress");
@@ -50,9 +55,11 @@ export default class VideoControls extends Component {
       <ul className="VideoControls">
         <PlayButton video={this.props.video} />
         <MuteButton toggleMute={this.toggleMute} />
+        <p>{this.formatDuration(this.state.currentTime)}</p>
         <progress id="progress" onClick={e => this.skipTo(e)} value="0" min="0">
           <span id="progress-bar" />
         </progress>
+        <p>{this.formatDuration(this.state.duration)}</p>
       </ul>
     );
   }
