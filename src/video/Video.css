@@ -102,7 +102,7 @@
   margin: auto;
 }
 
-.VideoPlaylist:hover .VideoPlaylistItem.selected > .marker{
+.VideoPlaylist:hover .VideoPlaylistItem.selected > .marker {
   width: 4px;
   left: 0;
   background: #ff9001;

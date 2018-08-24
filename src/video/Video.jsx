@@ -32,7 +32,7 @@ class Video extends Component {
           streamURI={this.state.streamURI}
           items={this.state.items}
         />
-    </React.Fragment>
+      </React.Fragment>
     );
   }
 }

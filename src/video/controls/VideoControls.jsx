@@ -50,11 +50,9 @@ export default class VideoControls extends Component {
       <ul className="VideoControls">
         <PlayButton video={this.props.video} />
         <MuteButton toggleMute={this.toggleMute} />
-        <p>{}</p>
         <progress id="progress" onClick={e => this.skipTo(e)} value="0" min="0">
           <span id="progress-bar" />
         </progress>
-        <p>{this.video.duration}</p>
       </ul>
     );
   }
