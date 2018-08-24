@@ -28,8 +28,8 @@
 }
 
 .VideoPlaylist {
+  z-index: 8;
   position: fixed;
-  right: 0;
   right: -394px;
   top: 0;
   bottom: 0;
